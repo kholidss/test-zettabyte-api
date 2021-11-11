@@ -7,10 +7,10 @@
   "scripts": {
     
     "start": "cross-env NODE_ENV=production && npm run server:prod",
-    "server:prod": "node dist/app.js",
-    "build": "babel app.js --out-dir build",
+    "server:prod": "node dist/server.js",
+    "build": "babel src/server.js --out-dir build",
     "clean": "rimraf dist",
-    "server": "cross-env DEBUG=app nodemon --exec babel-node app.js",
+    "server": "cross-env DEBUG=app nodemon --exec babel-node src/server.js",
     "dev": "cross-env NODE_ENV=development npm-run-all server",
     "prod": "npm-run-all clean build",
     "format": "prettier --write \"./**/*.js\"",
