@@ -1,14 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
+import index from "./routes/index.js";
 
 dotenv.config();
 const app = express();
 
-app.get("/", (req, res, next) => {
-  res.json({ message: "from index api" });
-});
+app.use("/api", index);
 
-app.listen(parseInt(process.env.PORT), () => {
-  console.log(`Server is running on port ${parseInt(process.env.PORT)}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
