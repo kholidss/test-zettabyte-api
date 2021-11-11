@@ -5,8 +5,8 @@
   "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "start": "node src/server.js",
-    "server:prod": "node dist/server.js",
+    "start": "node --experimental-modules --es-module-specifier-resolution=node src/server.js",
+    "server:prod": "--experimental-modules --es-module-specifier-resolution=node node dist/server.js",
     "build": "babel src/server.js --out-dir build",
     "clean": "rimraf dist",
     "server": "cross-env DEBUG=app nodemon --exec babel-node src/server.js",
