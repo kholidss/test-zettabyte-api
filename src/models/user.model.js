@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const schema = mongoose.Schema
 
+// eslint-disable-next-line new-cap
 const userSchema = new schema({
   name: {
     type: String,
@@ -24,5 +25,6 @@ const userSchema = new schema({
   },
 })
 
-const userModel = mongoose.model('user', userSchema)
-export { userModel }
+const UserModel = mongoose.model('user', userSchema)
+// eslint-disable-next-line import/prefer-default-export
+export { UserModel }

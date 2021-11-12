@@ -1,6 +1,7 @@
 import healthService from '../services/health.services'
 
 import { BaseResponse } from '../utils/helpers/base-response.handler'
+import { ApiError } from '../utils/helpers/error.handler'
 
 const healthCheck = async (req, res) => {
   try {
@@ -14,7 +15,7 @@ const healthCheck = async (req, res) => {
       })
     )
   } catch (error) {
-    console.log(error)
+    throw ApiError.internal(`Error! ${error}`)
   }
 }
 

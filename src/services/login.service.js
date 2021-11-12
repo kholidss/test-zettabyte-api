@@ -1,1 +1,3 @@
-const login = async () => {}
+const login = async () => 'asd'
+
+export default { login }

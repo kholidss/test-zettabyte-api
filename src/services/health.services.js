@@ -1,5 +1,3 @@
-const healthCheck = async () => {
-  return "I'm well"
-}
+const healthCheck = async () => "I'm well"
 
 export default { healthCheck }

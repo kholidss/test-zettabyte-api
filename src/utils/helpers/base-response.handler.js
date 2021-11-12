@@ -19,14 +19,14 @@ export class BaseResponse {
     return new BaseResponse(code, success, message, null)
   }
 
-  static pagination(code, success, message, page, total, take, total_page, data) {
+  static pagination(code, success, message, page, total, take, totalPage, data) {
     const res = new BaseResponse(code, success, message, data)
 
     res.meta = {
       current_page: page,
       total_data: total,
       per_page: take,
-      total_page,
+      total_page: totalPage,
     }
 
     return res

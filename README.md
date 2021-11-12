@@ -9,6 +9,10 @@ Fast, unopinionated, minimalist web framework for [node](http://nodejs.org).
 ```bash
 $ npm install
 ```
+## linter
+```bash
+$ npm run lint
+```
 
 ## Running the app
 

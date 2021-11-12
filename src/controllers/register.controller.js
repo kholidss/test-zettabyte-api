@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 import registerService from '../services/register.services'
 import { BaseResponse } from '../utils/helpers/base-response.handler'
-import { userModel } from '../models/user.model'
+import { UserModel } from '../models/user.model'
 import { ApiError } from '../utils/helpers/error.handler'
 
 const register = async (req, res, next) => {
@@ -13,7 +13,7 @@ const register = async (req, res, next) => {
       throw ApiError.badRequest('Passwords do not match. Please try again!')
     }
 
-    const existingEmail = await userModel.findOne({ email })
+    const existingEmail = await UserModel.findOne({ email })
     if (existingEmail) {
       throw ApiError.unprocessableEntity('Email already in use. Please use another email!')
     }
@@ -30,7 +30,7 @@ const register = async (req, res, next) => {
     const result = await registerService.register(bodyRegister)
     return res.json(BaseResponse.successCreate('Success create new user!', result))
   } catch (error) {
-    next(error)
+    return next(error)
   }
 }
 

@@ -1,6 +1,7 @@
 import { ApiError } from '../utils/helpers/error.handler'
 
-export function validation(schema) {
+export default function validation(schema) {
+  // eslint-disable-next-line func-names
   return async function (req, res, next) {
     try {
       const result = await schema.validate(req.body)
