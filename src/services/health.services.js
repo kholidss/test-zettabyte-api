@@ -1,5 +1,5 @@
 const healthCheck = async () => {
-  return "I'm well";
-};
+  return "I'm well"
+}
 
-export default { healthCheck };
+export default { healthCheck }

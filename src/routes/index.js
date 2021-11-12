@@ -1,9 +1,11 @@
-import express from "express";
-const router = express.Router();
-import healthRouter from "./health.router";
-import registerRouter from "./register.router";
+import express from 'express'
+import healthRouter from './health.router'
+import registerRouter from './register.router'
 
-router.use("/healthcheck", healthRouter);
-router.use("/register", registerRouter);
+const router = express.Router()
 
-export default router;
+router.use('/healthcheck', healthRouter)
+router.use('/register', registerRouter)
+router.use('/login', registerRouter)
+
+export default router
