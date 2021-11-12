@@ -13,6 +13,18 @@ $ npm install
 ## Running the app
 
 ```bash
+# Run
+$ npm start
+```
+
+```bash
 # Watch mode
 $ npm run start:dev
+```
+
+## Build the app
+
+```bash
+# Build
+$ npm run-script build
 ```

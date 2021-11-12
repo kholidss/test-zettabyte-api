@@ -1,44 +1,18 @@
 import mongoose from "mongoose";
-import appConfig from "./env";
-
-mongoose.Promise = Promise;
-
-mongoose.connection.on("connected", () => {
-  log("MongoDB Connection Established");
-});
-
-mongoose.connection.on("reconnected", () => {
-  log("MongoDB Connection Reestablished");
-});
-
-mongoose.connection.on("disconnected", () => {
-  log("MongoDB Connection Disconnected");
-});
-
-mongoose.connection.on("close", () => {
-  log("MongoDB Connection Closed");
-});
-
-mongoose.connection.on("error", (error) => {
-  log("MongoDB ERROR: " + error);
-
-  process.exit(1);
-});
-
-mongoose.set("debug", appConfig.mongoDebug);
 
 const connectMongo = async () => {
-  let connectionuri = appConfig.dbConnectionString;
-
-  await mongoose.connect(connectionuri, {
-    //autoReconnect: true,
-    //reconnectTries: 1000000,
-    //reconnectInterval: 3000,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(
+    process.env.MONGODB_CONNECTION_STRING ||
+      "mongodb://localhost:27017/db_test_memoora",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+    (err) => {
+      if (err) throw err;
+      console.log("Connected to MongoDB!");
+    }
+  );
 };
 
 export default connectMongo;

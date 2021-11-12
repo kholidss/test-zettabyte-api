@@ -8,7 +8,7 @@ const healthCheck = async (req, res) => {
     const dateNow = new Date(Date.now()).toISOString();
 
     return res.json(
-      BaseResponse.success(200, true, "Success healthcheck", {
+      BaseResponse.success("Success healthcheck", {
         result: result,
         time: dateNow,
       })

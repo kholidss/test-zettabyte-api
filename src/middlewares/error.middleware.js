@@ -3,7 +3,11 @@ import { ApiError } from "../utils/helpers/error.handler";
 
 export const errorHandler = (err, req, res, next) => {
   if (err instanceof ApiError) {
-    const exampleResponse = BaseResponse.error(err.status, err.message);
+    const exampleResponse = BaseResponse.error(
+      err.status,
+      err.success,
+      err.message
+    );
     return res.status(err.status).json(exampleResponse);
   }
 
