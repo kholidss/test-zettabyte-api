@@ -15,7 +15,7 @@ export class BaseResponse {
     return new BaseResponse(201, true, message, data)
   }
 
-  static error(code, success, message, data) {
+  static error(code, success, message) {
     return new BaseResponse(code, success, message, null)
   }
 
