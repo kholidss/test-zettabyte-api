@@ -1,14 +1,16 @@
-import { BaseResponse } from "../utils/helpers/base-response.handler";
+import { ApiError } from '../utils/helpers/error.handler'
 
-export function validation(schema) {
+export default function validation(schema) {
+  // eslint-disable-next-line func-names
   return async function (req, res, next) {
-    const result = await schema.validate(req.body);
-
-    if (result.error) {
-      return res
-        .status(400)
-        .json(BaseResponse.error(400, result.error.message));
+    try {
+      const result = await schema.validate(req.body)
+      if (result.error) {
+        throw ApiError.badRequest(result.error.message)
+      }
+      next()
+    } catch (error) {
+      next(error)
     }
-    next();
-  };
+  }
 }
