@@ -7,12 +7,16 @@ export class BaseResponse {
     this.meta = meta;
   }
 
-  static success(code, success, message, data) {
-    return new BaseResponse(code, success, message, data);
+  static success(message, data) {
+    return new BaseResponse(200, true, message, data);
   }
 
-  static error(code, success, message) {
-    return new BaseResponse(code, success, message, undefined);
+  static successCreate(message, data) {
+    return new BaseResponse(201, true, message, data);
+  }
+
+  static error(code, success, message, data) {
+    return new BaseResponse(code, success, message, null);
   }
 
   static pagination(
