@@ -8,10 +8,20 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body
 
-    const findUser = await UserModel.findOne({ email })
+    // eslint-disable-next-line object-shorthand
+    const findUser = await UserModel.findOne({ email: email }, (err, obj) => {
+      if (!obj) {
+        res.status(401).json({
+          code: 401,
+          success: false,
+          message: 'Login failed, invalid email or password!',
+          data: null,
+        })
+      }
+    })
     const passwordMatch = await bcrypt.compare(password, findUser.password)
 
-    if (!findUser && !passwordMatch) {
+    if (!passwordMatch) {
       throw ApiError.unauthorized('Login failed, invalid email or password!')
     }
 
