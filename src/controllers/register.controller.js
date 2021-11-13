@@ -7,9 +7,9 @@ import { ApiError } from '../utils/helpers/error.handler'
 
 const register = async (req, res, next) => {
   try {
-    const { name, email, password, confirmPassword, country } = req.body
+    const { name, email, password, confirm_password, country } = req.body
 
-    if (password !== confirmPassword) {
+    if (password !== confirm_password) {
       throw ApiError.badRequest('Passwords do not match. Please try again!')
     }
 

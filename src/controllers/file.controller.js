@@ -1,11 +1,11 @@
-import testService from '../services/test.services.'
+import fileServices from '../services/file.services.'
+import testService from '../services/file.services.'
 import { BaseResponse } from '../utils/helpers/base-response.handler'
 import { ApiError } from '../utils/helpers/error.handler'
 
-const test = async (req, res) => {
+const createFile = async (req, res) => {
   try {
-    const result = await testService.testMiddleware()
-    const dateNow = new Date(Date.now()).toISOString()
+    const result = await fileServices.createfile(req)
 
     return res.json(
       BaseResponse.success('Success test middlware', {
@@ -18,4 +18,4 @@ const test = async (req, res) => {
   }
 }
 
-export default { test }
+export default { createFile }

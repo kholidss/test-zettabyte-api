@@ -5,25 +5,24 @@ import { UserModel } from '../models/user.model'
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FileModel } from '../models/file.model'
-import { log } from 'console';
 
-const register = async (bodyRegister) => {
-  const newUser = new UserModel(bodyRegister)
-  const saveUser = await newUser.save()
+const createfile = async (req) => {
+
+  const newFile = new FileModel(req.body)
+  const saveFile = await newFile.save()
+
+  
 
   // eslint-disable-next-line no-underscore-dangle
   mkdirp.sync(`data/${saveUser._id}`)
-  const __dirname = dirname(fileURLToPath(import.meta.url)).split('/');
+  const __dirname = dirname(fileURLToPath(import.meta.url));
 
-  __dirname.splice(__dirname.indexOf('test-memoora-api') + 1, 2, "data/")
-  const resultDirectroy = __dirname.join('/') 
-
-  const newFile = new FileModel({
-    userId : saveUser._id,
-    fileName : 'file.yml',
-    fileDirectory : `${resultDirectroy}${saveUser._id}/file.yml`
-  })
-  await newFile.save()
+  // const newFile = new FileModel({
+  //   userId : saveUser._id,
+  //   fileName : 'file.yml',
+  //   fileDirectory : __dirname
+  // })
+  // await newFile.save()
 
   // const getUser = await UserModel.find({name: 'Joko'}).populate('File').exec(function (err, product) {
                 
@@ -43,4 +42,4 @@ const register = async (bodyRegister) => {
   }
 }
 
-export default { register }
+export default { createfile }

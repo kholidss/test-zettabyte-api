@@ -6,7 +6,7 @@ const login = async (user) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   })
   // eslint-disable-next-line no-underscore-dangle
-  return { id: user._id, email: user.email, name: user.name, country: user.country, token }
+  return { id: user._id, email: user.email, name: user.name,country: user.country, token }
 }
 
 export default { login }

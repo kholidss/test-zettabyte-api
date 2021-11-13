@@ -3,33 +3,23 @@ import mongoose from 'mongoose'
 const schema = mongoose.Schema
 
 // eslint-disable-next-line new-cap
-const userSchema = new schema({
-  name: {
+const fileSchema = new schema({
+  userId: {
     type: String,
     required: true,
   },
 
-  email: {
+  fileName: {
     type: String,
     required: true,
   },
 
-  password: {
+  fileDirectory: {
     type: String,
     required: true,
   },
-
-  country: {
-    type: String,
-    required: true,
-  },
-
-  file: [{
-    type: schema.Types.ObjectId,
-    ref: "File"
-  }]
 })
 
-const UserModel = mongoose.model('User', userSchema)
+const FileModel = mongoose.model('File', fileSchema)
 // eslint-disable-next-line import/prefer-default-export
-export { UserModel }
+export { FileModel }
