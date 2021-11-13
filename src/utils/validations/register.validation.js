@@ -5,7 +5,7 @@ const registerValidator = Joi.object({
   email: Joi.string().required().email(),
   password: Joi.string().required().min(8),
   country: Joi.string().required(),
-  confirmPassword: Joi.string(),
+  confirm_password: Joi.string(),
 })
 
 export default registerValidator
