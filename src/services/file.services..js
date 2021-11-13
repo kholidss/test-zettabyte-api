@@ -1,45 +1,50 @@
+/* eslint-disable no-underscore-dangle */
 import fs from 'fs'
 import YAML from 'yaml'
-import mkdirp from 'mkdirp'
-import { UserModel } from '../models/user.model'
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { FileModel } from '../models/file.model'
+import { randomString } from '../utils/helpers/random-string.helper'
 
-const createfile = async (req) => {
+// eslint-disable-next-line consistent-return
+const createfile = async (reqBody, userId) => {
+  try {
+    const __dirname = dirname(fileURLToPath(import.meta.url)).split('/')
 
-  const newFile = new FileModel(req.body)
-  const saveFile = await newFile.save()
+    __dirname.splice(__dirname.indexOf('test-memoora-api') + 1, 2, 'data/')
+    const resultDirectroy = __dirname.join('/')
 
-  
+    const fileName = randomString(11)
+    const newFile = new FileModel({
+      userId,
+      fileName,
+      fileDirectory: `${resultDirectroy}${userId}/${fileName}.yml`,
+      name: reqBody.name,
+      email: reqBody.email,
+    })
+    const saveFile = await newFile.save()
 
-  // eslint-disable-next-line no-underscore-dangle
-  mkdirp.sync(`data/${saveUser._id}`)
-  const __dirname = dirname(fileURLToPath(import.meta.url));
+    const registerDataYAML = YAML.stringify({ EMAIL: reqBody.email, NAME: reqBody.name })
+    fs.writeFileSync(`data/${userId}/${fileName}.yml`, registerDataYAML)
 
-  // const newFile = new FileModel({
-  //   userId : saveUser._id,
-  //   fileName : 'file.yml',
-  //   fileDirectory : __dirname
-  // })
-  // await newFile.save()
-
-  // const getUser = await UserModel.find({name: 'Joko'}).populate('File').exec(function (err, product) {
-                
-  //   console.log(product);
-  // });
-
-  const registerDataYAML = YAML.stringify({EMAIL: saveUser.email, NAME: saveUser.name})
-  fs.writeFileSync(`data/${saveUser._id}/file.yml`, registerDataYAML)
-
-
-  return {
-    // eslint-disable-next-line no-underscore-dangle
-    id: saveUser._id,
-    name: saveUser.name,
-    email: saveUser.email,
-    country: saveUser.country,
+    return {
+      // eslint-disable-next-line no-underscore-dangle
+      id: saveFile._id,
+      user_id: saveFile.userId,
+      file_name: saveFile.fileName,
+      file_directory: saveFile.fileDirectory,
+      name: saveFile.name,
+      email: saveFile.email,
+    }
+  } catch (error) {
+    console.log(error)
   }
 }
 
-export default { createfile }
+const getUserFile = async (userId) => {
+  const getUser = await FileModel.find({ userId })
+
+  return getUser
+}
+
+export default { createfile, getUserFile }
