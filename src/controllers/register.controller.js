@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import bcrypt from 'bcrypt'
 import registerService from '../services/register.services'
 import { BaseResponse } from '../utils/helpers/base-response.handler'
