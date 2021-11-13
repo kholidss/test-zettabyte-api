@@ -7,5 +7,6 @@ import fileValidator from '../utils/validations/file.validation'
 const router = express.Router()
 
 router.post('/', auth, validation(fileValidator), fileController.createFile)
+router.get('/:id', auth, fileController.getUserFile)
 
 export default router

@@ -18,6 +18,14 @@ const fileSchema = new schema({
     type: String,
     required: true,
   },
+
+  name: {
+    type: String,
+  },
+
+  email: {
+    type: String,
+  },
 })
 
 const FileModel = mongoose.model('File', fileSchema)

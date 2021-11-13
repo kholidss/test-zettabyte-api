@@ -3,7 +3,8 @@ import { BaseResponse } from '../utils/helpers/base-response.handler'
 import loginService from '../services/login.service'
 import { UserModel } from '../models/user.model'
 
-const login = async (req, res, next) => {
+// eslint-disable-next-line consistent-return
+const login = async (req, res) => {
   try {
     const { email, password } = req.body
 
@@ -33,8 +34,7 @@ const login = async (req, res, next) => {
 
     return res.json(BaseResponse.success('Success login!', result))
   } catch (error) {
-    // console.log(error);
-    // return next(error)
+    console.log(error)
   }
 }
 

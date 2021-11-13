@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt'
-// import jwt from 'jsonwebtoken'
 import registerService from '../services/register.services'
 import { BaseResponse } from '../utils/helpers/base-response.handler'
 import { UserModel } from '../models/user.model'

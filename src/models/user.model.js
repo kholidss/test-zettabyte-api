@@ -23,11 +23,6 @@ const userSchema = new schema({
     type: String,
     required: true,
   },
-
-  file: [{
-    type: schema.Types.ObjectId,
-    ref: "File"
-  }]
 })
 
 const UserModel = mongoose.model('User', userSchema)
