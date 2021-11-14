@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable no-underscore-dangle */
 import fs from 'fs'
 import YAML from 'yaml'
@@ -36,9 +37,7 @@ const createfile = async (reqBody, userId) => {
       name: saveFile.name,
       email: saveFile.email,
     }
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (error) {}
 }
 
 const getUserFile = async (userId) => {
