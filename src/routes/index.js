@@ -1,14 +1,12 @@
 import express from 'express'
 import healthRouter from './health.router'
-import registerRouter from './register.router'
-import loginRouter from './login.router'
-import fileRouter from './file.router'
+import articleRouter from './article.router'
+import commentRouter from './comment.router'
 
 const router = express.Router()
 
 router.use('/healthcheck', healthRouter)
-router.use('/register', registerRouter)
-router.use('/login', loginRouter)
-router.use('/file', fileRouter)
+router.use('/article', articleRouter)
+router.use('/comment', commentRouter)
 
 export default router
