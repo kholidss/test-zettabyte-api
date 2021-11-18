@@ -21,10 +21,10 @@ const getAllComment = async (req, res) => {
     }
 
     let sortBy
-    if ((req.query.sort_by = 'username.asc')) {
+    if (req.query.sort_by === 'username.asc') {
       sortBy = { username: 'asc' }
     }
-    if ((req.query.sort_by = 'username.desc')) {
+    if (req.query.sort_by === 'username.desc') {
       sortBy = { username: 'desc' }
     }
 

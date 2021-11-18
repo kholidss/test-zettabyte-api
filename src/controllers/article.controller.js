@@ -20,10 +20,10 @@ const getAllArticle = async (req, res) => {
     }
 
     let sortBy
-    if ((req.query.sort_by = 'title.asc')) {
+    if (req.query.sort_by === 'title.asc') {
       sortBy = { title: 'asc' }
     }
-    if ((req.query.sort_by = 'title.desc')) {
+    if (req.query.sort_by === 'title.desc') {
       sortBy = { title: 'desc' }
     }
 
